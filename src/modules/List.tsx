@@ -2,8 +2,9 @@ import { useEffect, useReducer } from 'react';
 import { AppShell, Group, Title } from '@mantine/core';
 import { ListElement } from '../components/Card/Card';
 import { Modal } from '../components/Modal/Modal';
+import type { SpaceXLaunch, AppState, AppAction } from '../types';
 
-function reducer(state: any, action: any) {
+function reducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case 'FETCH_LIST': {
       return {
@@ -21,7 +22,7 @@ function reducer(state: any, action: any) {
   }
 }
 
-async function fetchList() {
+async function fetchList(): Promise<SpaceXLaunch[]> {
   const response = await fetch(
     'https://api.spacexdata.com/v3/launches?launch_year=2020'
   );
@@ -44,19 +45,25 @@ export const List = () => {
   return (
     <>
       <AppShell header={{ height: 100 }} px={80} py={60}>
-        <AppShell.Header className='header' withBorder={false}>
+        <AppShell.Header className="header" withBorder={false}>
           <Group pt={30} justify="center">
             <Title order={1}>SpaceX Launches 2020</Title>
           </Group>
         </AppShell.Header>
         <AppShell.Main>
           <Group justify="center">
-            {state.list.map((el) => (
-              <ListElement dispatch={dispatch} data={el} />
+            {state.list.map((el: SpaceXLaunch) => (
+              <ListElement
+                key={el.flight_number}
+                dispatch={dispatch}
+                data={el}
+              />
             ))}
           </Group>
         </AppShell.Main>
-        {state.modal.show && <Modal dispatch={dispatch} data={state.modal.card} />}
+        {state.modal.show && (
+          <Modal dispatch={dispatch} data={state.modal.card} />
+        )}
       </AppShell>
     </>
   );

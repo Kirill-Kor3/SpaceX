@@ -1,8 +1,9 @@
 import { Box, Button, Card, Image, Stack, Text } from '@mantine/core';
 import placeholder from '../../../public/spaceXPlaceholder.png';
+import type { ListElementProps } from '../../types';
 import './Card.css';
 
-export const ListElement = ({ data, dispatch }) => {
+export const ListElement = ({ data, dispatch }: ListElementProps) => {
   return (
     <Card
       className="card"
@@ -17,7 +18,13 @@ export const ListElement = ({ data, dispatch }) => {
       <Stack className="card">
         <Card.Section>
           {data.links.mission_patch_small === null ? (
-            <Image className='image-spaceX' alt="Mission image" w={100} h={100} src={placeholder} />
+            <Image
+              className="image-spaceX"
+              alt="Mission image"
+              w={100}
+              h={100}
+              src={placeholder}
+            />
           ) : (
             <Image
               alt="Mission image"
