@@ -1,0 +1,22 @@
+.modal {
+  z-index: 400;
+  position: fixed;
+  top: 400px;
+  width: 600px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image-spaceX {
+  border-radius: 15px;
+}
+
+.overlay {
+  z-index: 300;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}

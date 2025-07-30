@@ -1,0 +1,12 @@
+.card {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  text-align: center;
+}
+
+.image-spaceX {
+  border-radius: 15px;
+}
